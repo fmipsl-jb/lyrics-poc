@@ -1,0 +1,13 @@
+# Lyrics PoC — Python dependencies
+#
+# GUI (Tkinter) ships with the Python standard library on macOS and Windows,
+# so it is intentionally NOT listed here.
+#
+# Whisper pulls in torch, numpy, tiktoken, etc. as transitive dependencies.
+# Pinned to a known-good release for reproducible PoC builds.
+openai-whisper==20240930
+
+# Build-time pin: openai-whisper's setup.py imports pkg_resources, which
+# setuptools>=81 removed. Keep setuptools below 81 so the build succeeds.
+# (The run scripts also install this before building, with build isolation off.)
+setuptools>=68,<81
